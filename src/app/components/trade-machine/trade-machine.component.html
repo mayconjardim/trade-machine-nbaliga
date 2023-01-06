@@ -4,13 +4,13 @@
 
     <div
       cdkDropList
-      [cdkDropListData]="items"
+      [cdkDropListData]="team1"
       class="example-list"
       cdkDropListSortingDisabled
       (cdkDropListDropped)="drop($event)"
     >
-      <div class="example-box" *ngFor="let item of items" cdkDrag>
-        {{ item }}
+      <div class="example-box" *ngFor="let player of item.players" cdkDrag>
+        {{ player.name }}
       </div>
     </div>
   </div>
@@ -20,12 +20,12 @@
 
     <div
       cdkDropList
-      [cdkDropListData]="basket"
+      [cdkDropListData]="team2"
       class="example-list"
       (cdkDropListDropped)="drop($event)"
     >
-      <div class="example-box" *ngFor="let item of basket" cdkDrag>
-        {{ item }}
+      <div class="example-box" *ngFor="let player of item.players" cdkDrag>
+        {{ player.name }}
       </div>
     </div>
   </div>

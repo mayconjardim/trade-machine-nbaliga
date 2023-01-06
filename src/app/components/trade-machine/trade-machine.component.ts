@@ -11,15 +11,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trade-machine.component.scss'],
 })
 export class TradeMachineComponent implements OnInit {
-  items = ['Carrots', 'Tomatoes', 'Onions', 'Apples', 'Avocados'];
-
-  basket = ['Oranges', 'Bananas', 'Cucumbers'];
-
   constructor() {}
 
   ngOnInit(): void {}
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
