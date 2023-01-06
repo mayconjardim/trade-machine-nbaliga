@@ -17,11 +17,19 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class TradeMachineComponent implements OnInit {
   teams!: Team[];
-  teamOne!: Team;
-  teamTwo!: Team;
+  team1Form: FormControl = new FormControl();
+  team2Form: FormControl = new FormControl();
+  team1!: Team;
+  team2!: Team;
 
-  team1: FormControl = new FormControl();
-  team2: FormControl = new FormControl();
+  playersTeam1!: Players[];
+  playersTeam2!: Players[];
+
+  capSpace: number = 101962352;
+
+  playerImg = 'assets/images/players/';
+  png = '.png';
+  error = 'assets/images/players/blank.png';
 
   constructor(private service: TeamService) {}
 
@@ -33,22 +41,33 @@ export class TradeMachineComponent implements OnInit {
 
   getTeam(id: number) {
     if (id == 1) {
-      this.service.findById(this.team1.value).subscribe((response) => {
-        this.teamOne = response;
+      this.service.findById(this.team1Form.value).subscribe((response) => {
+        this.team1 = response;
+        this.playersTeam1! = response.players!;
       });
     } else {
-      this.service.findById(this.team1.value).subscribe((response) => {
-        this.teamTwo = response;
+      this.service.findById(this.team2Form.value).subscribe((response) => {
+        this.team2 = response;
+        this.playersTeam2! = response.players!;
       });
     }
   }
 
-  getValue() {
-    console.log(this.teamOne.name);
-    console.log(this.teamTwo.name);
+  getCapRoom(id: number): number {
+    let capRoom = 0;
+    if (id == 1) {
+      this.team1.players?.forEach((x) => {
+        capRoom += x.contract1;
+      });
+    } else {
+      this.team2.players?.forEach((x) => {
+        capRoom += x.contract1;
+      });
+    }
+    return capRoom;
   }
 
-  drop(event: CdkDragDrop<Players[]>) {
+  drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

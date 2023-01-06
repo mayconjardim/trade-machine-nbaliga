@@ -1,7 +1,6 @@
 .container {
-  width: 800px;
   margin: 0 auto;
-  background-color: grey;
+  background-color: #212529;
 
   &-select {
     display: flex;
@@ -11,36 +10,42 @@
       margin: 10px;
     }
   }
+
+  &-team-card {
+    color: red;
+  }
 }
 
 .example-container {
-  width: 400px;
-  max-width: 100%;
+  width: 350px;
+  width: 30%;
   margin: 0 25px 25px 0;
   display: inline-block;
+  justify-content: center;
   vertical-align: top;
 }
 
 .example-list {
-  border: solid 1px #ccc;
-  min-height: 60px;
-  background: white;
+  border: solid 1px black;
+  min-height: 40px;
+  background: #212529;
   border-radius: 4px;
+  color: white;
   overflow: hidden;
   display: block;
 }
 
 .example-box {
-  padding: 20px 10px;
-  border-bottom: solid 1px #ccc;
-  color: rgba(0, 0, 0, 0.87);
+  padding: 5px 10px;
+  border-bottom: solid 1px black;
+  color: white;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
   cursor: move;
-  background: white;
+  background: #383b3f;
   font-size: 14px;
 }
 

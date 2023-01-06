@@ -11,7 +11,7 @@ export class TeamService {
   constructor(private http: HttpClient) {}
 
   findById(id: any): Observable<Team> {
-    return this.http.get<Team>(`${API_CONFIG.baseUrl}/teams/${id}`);
+    return this.http.get<Team>(`${API_CONFIG.baseUrl}/teams/basic/${id}`);
   }
 
   findAll(): Observable<Team[]> {
