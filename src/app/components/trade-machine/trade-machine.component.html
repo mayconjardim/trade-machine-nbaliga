@@ -24,9 +24,16 @@
       <div cdkDropListGroup>
         <div class="example-container">
           <div class="container-team-card">
-            <p>{{ getCapRoom(1) | currency : "USD" : "symbol" : "1.0" }}</p>
-            <p>{{ team1.name }}</p>
+            <span> {{ team1.name }}</span>
+            <p
+              [ngStyle]="{
+                color: getCapRoom(1) < 0 ? 'red' : 'green'
+              }"
+            >
+              {{ getCapRoom(1) | currency : "USD" : "symbol" : "1.0" }}
+            </p>
           </div>
+
           <div
             cdkDropList
             [cdkDropListData]="playersTeam1"
@@ -71,8 +78,14 @@
 
         <div class="example-container">
           <div class="container-team-card">
-            <p>{{ getCapRoom(2) | currency : "USD" : "symbol" : "1.0" }}</p>
-            <p>{{ team2.name }}</p>
+            <span> {{ team2.name }}</span>
+            <p
+              [ngStyle]="{
+                color: getCapRoom(2) < 0 ? 'red' : 'green'
+              }"
+            >
+              {{ getCapRoom(2) | currency : "USD" : "symbol" : "1.0" }}
+            </p>
           </div>
 
           <div

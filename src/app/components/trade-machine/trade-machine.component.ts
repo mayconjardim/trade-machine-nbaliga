@@ -64,7 +64,9 @@ export class TradeMachineComponent implements OnInit {
         capRoom += x.contract1;
       });
     }
-    return capRoom;
+    if (capRoom > this.capSpace) {
+      return this.capSpace - capRoom;
+    } else return capRoom;
   }
 
   ratingColors(rating: string) {

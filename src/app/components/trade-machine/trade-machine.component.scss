@@ -22,7 +22,14 @@
   }
 
   &-team-card {
-    color: red;
+    height: 45px;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin: 5px;
+    padding: 5px;
+    background-color: #383b3f;
+    color: White;
+    font-size: 12px;
   }
 }
 
