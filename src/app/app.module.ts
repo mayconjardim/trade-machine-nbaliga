@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ImgFallbackModule } from 'ngx-img-fallback';
 
 import { AppComponent } from './app.component';
 import { TradeMachineComponent } from './components/trade-machine/trade-machine.component';
@@ -19,6 +20,7 @@ import { TradeMachineComponent } from './components/trade-machine/trade-machine.
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ImgFallbackModule,
     DragDropModule,
     MatCardModule,
     MatButtonModule,

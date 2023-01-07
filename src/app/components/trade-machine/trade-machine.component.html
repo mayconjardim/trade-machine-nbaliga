@@ -1,59 +1,122 @@
 <div class="container">
-  <div class="container-select">
-    <mat-form-field appearance="fill">
-      <mat-label>Selectione um time</mat-label>
-      <mat-select [formControl]="team1Form" (selectionChange)="getTeam(1)">
-        <mat-option *ngFor="let team of teams" value="{{ team.id }}">
-          {{ team.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+  <div class="container-trade">
+    <div class="container-select">
+      <mat-form-field appearance="fill">
+        <mat-label>Selectione um time</mat-label>
+        <mat-select [formControl]="team1Form" (selectionChange)="getTeam(1)">
+          <mat-option *ngFor="let team of teams" value="{{ team.id }}">
+            {{ team.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Selectione um time</mat-label>
-      <mat-select [formControl]="team2Form" (selectionChange)="getTeam(2)">
-        <mat-option *ngFor="let team of teams" value="{{ team.id }}">
-          {{ team.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <ng-container *ngIf="playersTeam1 && playersTeam2">
-    <div cdkDropListGroup>
-      <div class="example-container">
-        <div class="container-team-card">
-          <p>{{ getCapRoom(1) }}</p>
-          <p>{{ team1.name }}</p>
-        </div>
-        <div
-          cdkDropList
-          [cdkDropListData]="playersTeam1"
-          class="example-list"
-          cdkDropListSortingDisabled
-          (cdkDropListDropped)="drop($event)"
-        >
-          <div class="example-box" *ngFor="let player of playersTeam1" cdkDrag>
-            <p>{{ player.firstname + " " + player.lastname }}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="example-container">
-        <h2>Shopping basket</h2>
-
-        <div
-          cdkDropList
-          [cdkDropListData]="playersTeam2"
-          class="example-list"
-          (cdkDropListDropped)="drop($event)"
-        >
-          <div class="example-box" *ngFor="let player of playersTeam2" cdkDrag>
-            <p>{{ player.firstname + " " + player.lastname }}</p>
-            <p></p>
-          </div>
-        </div>
-      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Selectione um time</mat-label>
+        <mat-select [formControl]="team2Form" (selectionChange)="getTeam(2)">
+          <mat-option *ngFor="let team of teams" value="{{ team.id }}">
+            {{ team.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-  </ng-container>
+
+    <ng-container *ngIf="playersTeam1 && playersTeam2">
+      <div cdkDropListGroup>
+        <div class="example-container">
+          <div class="container-team-card">
+            <p>{{ getCapRoom(1) | currency : "USD" : "symbol" : "1.0" }}</p>
+            <p>{{ team1.name }}</p>
+          </div>
+          <div
+            cdkDropList
+            [cdkDropListData]="playersTeam1"
+            class="example-list"
+            cdkDropListSortingDisabled
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div
+              class="example-box"
+              *ngFor="let player of playersTeam1"
+              cdkDrag
+            >
+              <div class="playerimg">
+                <img
+                  [src]="
+                    playerImg +
+                    [player.lastname] +
+                    '_' +
+                    [player.firstname] +
+                    [png]
+                  "
+                  src-fallback="{{ error }}"
+                  alt="player img"
+                  class="player-img {{ teamColors(player.currentteam) }}"
+                />
+              </div>
+              <div class="player-ratings">
+                <img [src]="ratingColors(player.currentrating)" />
+                <img [src]="ratingColors(player.futurerating)" />
+              </div>
+
+              <div class="player-info">
+                <p>{{ player.firstname }} {{ player.lastname }}</p>
+                <p>
+                  {{ player.contract1 | currency : "USD" : "symbol" : "1.0" }}
+                  ({{ player.contractLength }})
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-container">
+          <div class="container-team-card">
+            <p>{{ getCapRoom(2) | currency : "USD" : "symbol" : "1.0" }}</p>
+            <p>{{ team2.name }}</p>
+          </div>
+
+          <div
+            cdkDropList
+            [cdkDropListData]="playersTeam2"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div
+              class="example-box"
+              *ngFor="let player of playersTeam2"
+              cdkDrag
+            >
+              <div class="playerimg">
+                <img
+                  [src]="
+                    playerImg +
+                    [player.lastname] +
+                    '_' +
+                    [player.firstname] +
+                    [png]
+                  "
+                  src-fallback="{{ error }}"
+                  alt="player img"
+                  class="player-img {{ teamColors(player.currentteam) }}"
+                />
+              </div>
+
+              <div class="player-ratings">
+                <img [src]="ratingColors(player.currentrating)" />
+                <img [src]="ratingColors(player.futurerating)" />
+              </div>
+
+              <div class="player-info">
+                <p>{{ player.firstname }} {{ player.lastname }}</p>
+                <p>
+                  {{ player.contract1 | currency : "USD" : "symbol" : "1.0" }}
+                  ({{ player.contractLength }})
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
 </div>

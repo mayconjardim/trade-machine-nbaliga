@@ -67,6 +67,45 @@ export class TradeMachineComponent implements OnInit {
     return capRoom;
   }
 
+  ratingColors(rating: string) {
+    switch (rating) {
+      case 'A+':
+        return 'assets/images/utils/aa.png';
+      case 'A':
+        return 'assets/images/utils/a.png';
+      case 'B':
+        return 'assets/images/utils/b.png';
+      case 'C':
+        return 'assets/images/utils/c.png';
+      case 'D':
+        return 'assets/images/utils/d.png';
+      default:
+        return 'assets/images/utils/f.png';
+    }
+  }
+
+  getPosition(position: number) {
+    switch (position) {
+      case 5:
+        return 'PG';
+      case 4:
+        return 'SG';
+      case 3:
+        return 'SF';
+      case 2:
+        return 'PF';
+      default:
+        return 'C';
+    }
+  }
+
+  teamColors(team: string) {
+    if (team == '76ers') {
+      return 'Sixers';
+    }
+    return team;
+  }
+
   drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
